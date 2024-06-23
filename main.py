@@ -4,7 +4,7 @@ from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-import time
+
 
 
 # no modificar
@@ -104,7 +104,7 @@ class UrbanRoutesPage:
         self.driver.find_element(*self.add_card).click()
         self.driver.find_element(*self.card_number_field).send_keys(data.card_number)
         self.driver.find_element(*self.card_code_field).send_keys(data.card_code)
-        self.driver.find_element(*self.card_number_field).click()
+        self.driver.find_element(*self.card_code_field).send_keys(Keys.TAB)
         self.driver.find_element(*self.add_card_button).click()
         self.driver.find_element(*self.close_add_card_modal).click()
 
