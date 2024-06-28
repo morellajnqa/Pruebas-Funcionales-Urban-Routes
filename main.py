@@ -1,5 +1,4 @@
 import data
-import UrbanRoutesPage
 import helpers
 from selenium import webdriver
 from selenium.webdriver import Keys
@@ -30,7 +29,6 @@ class TestUrbanRoutes:
 
     def test_set_route(self):
         self.driver.get(data.urban_routes_url)
-        #from UrbanRoutesPage import UrbanRoutesPage
         routes_page = UrbanRoutesPage(self.driver)
         address_from = data.address_from
         address_to = data.address_to
@@ -39,31 +37,37 @@ class TestUrbanRoutes:
         assert routes_page.get_to() == address_to
 
     def test_taxi_button(self):
-        #self.driver.get(data.urban_routes_url)
         routes_page = UrbanRoutesPage(self.driver)
         routes_page.click_order_taxi_button()
 
     def test_confort_button(self):
-        #self.driver.get(data.urban_routes_url)
         routes_page = UrbanRoutesPage(self.driver)
         routes_page.click_confort_fee_button()
 
     def test_fill_phone_number(self):
-        #self.driver.get(data.urban_routes_url)
         routes_page = UrbanRoutesPage(self.driver)
         routes_page.fill_phone_fild()
 
     def test_add_credit_card(self):
-        self.driver.get(data.urban_routes_url)
         routes_page = UrbanRoutesPage(self.driver)
     #se cambia el nombre de la función según lo indicado
         routes_page.add_credit_card()
 
-    def test_add_aditional_data(self):
-        self.driver.get(data.urban_routes_url)
+    def test_add_driver_comment(self):
         routes_page = UrbanRoutesPage(self.driver)
-        routes_page.add_aditional_data()
+        routes_page.add_driver_comment()
 
+    def add_blanket_handkerchiefs(self):
+        routes_page = UrbanRoutesPage(self.driver)
+        routes_page.add_blanket_handkerchiefs()
+
+    def add_icecream(self):
+        routes_page = UrbanRoutesPage(self.driver)
+        routes_page.add_icecream()
+
+    def click_taxi_button(self):
+        routes_page = UrbanRoutesPage(self.driver)
+        routes_page.click_taxi_button()
 
     @classmethod
     def teardown_class(cls):

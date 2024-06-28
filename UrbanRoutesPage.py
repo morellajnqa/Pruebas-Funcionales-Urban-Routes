@@ -78,10 +78,16 @@ class UrbanRoutesPage:
         self.driver.find_element(*self.add_card_button).click()
         self.driver.find_element(*self.close_add_card_modal).click()
 
-    def add_aditional_data(self):
+    def add_driver_comment(self):
         self.driver.find_element(*self.driver_comment).send_keys(data.message_for_driver)
+
+    def add_blanket_handkerchiefs(self):
         self.driver.find_element(*self.blanket_handkerchiefs).click()
+
+    def add_icecream(self):
         self.driver.find_element(*self.icecream_counter).click()
         self.driver.find_element(*self.icecream_counter).click()
+
+    def click_taxi_button(self):
         self.driver.find_element(*self.get_taxi_button).click()
         WebDriverWait(self.driver, 60).until(expected_conditions.presence_of_element_located(self.driver_img))
