@@ -1,10 +1,7 @@
 import data
 import helpers
-from selenium import webdriver
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
 
 class UrbanRoutesPage:
     from_field = (By.ID, 'from')
@@ -24,9 +21,15 @@ class UrbanRoutesPage:
     card_code_field = (By.NAME, "code")
     add_card_button = (By.XPATH, "(//button[@type='submit'])[3]")
     close_add_card_modal = (By.CSS_SELECTOR, ".payment-picker .active > .close-button")
+    # agrego este elemento para el assert
+    card_img = (By.XPATH , "//img[@alt='card']")
     #otros servicios
     driver_comment = (By.ID, "comment")
     blanket_handkerchiefs = (By.CSS_SELECTOR, ".r:nth-child(1) .slider")
+    # Agregar elemento para assert
+    blanket_handkerchiefs_input = (By.CSS_SELECTOR, ".r:nth-child(1) .switch-input")
+    # Agregar elemento para assert
+    icecream_counter_value = (By.CSS_SELECTOR, ".r:nth-child(1) .counter-value")
     icecream_counter = (By.CSS_SELECTOR, ".r:nth-child(1) .counter-plus")
     get_taxi_button = (By.CSS_SELECTOR, ".smart-button-main")
     driver_img = (By.CSS_SELECTOR, ".order-button > img:nth-child(2)")
@@ -47,22 +50,26 @@ class UrbanRoutesPage:
         return self.driver.find_element(*self.to_field).get_property('value')
 
     def set_route(self, address_from, address_to):
-        WebDriverWait(self.driver, 3).until(expected_conditions.presence_of_element_located(self.from_field))
-        WebDriverWait(self.driver, 3).until(expected_conditions.presence_of_element_located(self.to_field))
+        helpers.wait_elements (self.driver, self.from_field)
+        helpers.wait_elements(self.driver, self.to_field)
         self.set_from(address_from)
         self.set_to(address_to)
 
     def click_order_taxi_button(self):
-        WebDriverWait(self.driver, 6).until(expected_conditions.presence_of_element_located(self.order_taxi_button))
+        #WebDriverWait(self.driver, 6).until(expected_conditions.presence_of_element_located(self.order_taxi_button))
+        helpers.wait_elements(self.driver, self.order_taxi_button)
         self.driver.find_element(*self.order_taxi_button).click()
 
+
     def click_confort_fee_button(self):
-        WebDriverWait(self.driver, 6).until(expected_conditions.presence_of_element_located(self.confort_fee_button))
+        helpers.wait_elements(self.driver, self.confort_fee_button)
+        #WebDriverWait(self.driver, 6).until(expected_conditions.presence_of_element_located(self.confort_fee_button))
         self.driver.find_element(*self.confort_fee_button).click()
 
     def fill_phone_fild(self):
         self.driver.find_element(*self.phone_field).click()
-        WebDriverWait(self.driver, 3).until(expected_conditions.presence_of_element_located(self.phone_field_popup))
+        helpers.wait_elements(self.driver, self.phone_field_popup)
+        #WebDriverWait(self.driver, 3).until(expected_conditions.presence_of_element_located(self.phone_field_popup))
         self.driver.find_element(*self.phone_field_popup).send_keys(data.phone_number)
         self.driver.find_element(*self.phone_button).click()
         validation_code = helpers.retrieve_phone_code(self.driver)
@@ -90,4 +97,5 @@ class UrbanRoutesPage:
 
     def click_taxi_button(self):
         self.driver.find_element(*self.get_taxi_button).click()
-        WebDriverWait(self.driver, 60).until(expected_conditions.presence_of_element_located(self.driver_img))
+        helpers.wait_elements(self.driver, self.driver_img, 60)
+        #WebDriverWait(self.driver, 60).until(expected_conditions.presence_of_element_located(self.driver_img))

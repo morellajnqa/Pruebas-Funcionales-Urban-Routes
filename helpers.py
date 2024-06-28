@@ -1,11 +1,3 @@
-# import data
-# from selenium import webdriver
-# from selenium.webdriver import Keys
-# from selenium.webdriver.common.by import By
-# from selenium.webdriver.support import expected_conditions
-# from selenium.webdriver.support.wait import WebDriverWait
-
-
 def retrieve_phone_code(driver) -> str:
     """Este código devuelve un número de confirmación de teléfono y lo devuelve como un string.
     Utilízalo cuando la aplicación espere el código de confirmación para pasarlo a tus pruebas.
@@ -31,3 +23,8 @@ def retrieve_phone_code(driver) -> str:
             raise Exception("No se encontró el código de confirmación del teléfono.\n"
                             "Utiliza 'retrieve_phone_code' solo después de haber solicitado el código en tu aplicación.")
         return code
+
+def wait_elements(driver,element,time=6):
+    from selenium.webdriver.support import expected_conditions
+    from selenium.webdriver.support.wait import WebDriverWait
+    WebDriverWait(driver, time).until(expected_conditions.presence_of_element_located(element))
