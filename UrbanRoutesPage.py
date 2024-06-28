@@ -32,7 +32,11 @@ class UrbanRoutesPage:
     icecream_counter_value = (By.CSS_SELECTOR, ".r:nth-child(1) .counter-value")
     icecream_counter = (By.CSS_SELECTOR, ".r:nth-child(1) .counter-plus")
     get_taxi_button = (By.CSS_SELECTOR, ".smart-button-main")
+    # Para verificar que este en busquedo en el pop up
+    order_header_title = (By.CSS_SELECTOR, ".order-header-title")
     driver_img = (By.CSS_SELECTOR, ".order-button > img:nth-child(2)")
+
+    # < div class ="order-header-title" > Buscar automóvil < / div >
 
     def __init__(self, driver):
         self.driver = driver
@@ -97,5 +101,5 @@ class UrbanRoutesPage:
 
     def click_taxi_button(self):
         self.driver.find_element(*self.get_taxi_button).click()
-        helpers.wait_elements(self.driver, self.driver_img, 60)
+        #helpers.wait_elements(self.driver, self.driver_img, 60)
         #WebDriverWait(self.driver, 60).until(expected_conditions.presence_of_element_located(self.driver_img))

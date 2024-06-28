@@ -28,3 +28,7 @@ def wait_elements(driver,element,time=6):
     from selenium.webdriver.support import expected_conditions
     from selenium.webdriver.support.wait import WebDriverWait
     WebDriverWait(driver, time).until(expected_conditions.presence_of_element_located(element))
+
+def wait(waiting_time=10):
+    import time
+    time.sleep(waiting_time)

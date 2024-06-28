@@ -1,6 +1,8 @@
 import data
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+
+import helpers
 from UrbanRoutesPage import UrbanRoutesPage
 
 class TestUrbanRoutes:
@@ -73,7 +75,13 @@ class TestUrbanRoutes:
     def test_click_taxi_button(self):
         routes_page = UrbanRoutesPage(self.driver)
         routes_page.click_taxi_button()
+        #Este primer mensaje indica que el popup abrio y se esta buscando un taxi
+        assert self.driver.find_element(*routes_page.order_header_title).text == "Buscar automóvil"
+        # Se coloco la pause para que termine de buscar el taxi
+        helpers.wait_elements(self.driver, routes_page.driver_img, 60)
+        assert not self.driver.find_element(*routes_page.order_header_title).text == "Buscar automóvil"
         assert self.driver.find_element(*routes_page.driver_img).get_property('alt') == "close"
+
 
 
     @classmethod
