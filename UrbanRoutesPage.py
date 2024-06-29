@@ -32,7 +32,7 @@ class UrbanRoutesPage:
     icecream_counter_value = (By.CSS_SELECTOR, ".r:nth-child(1) .counter-value")
     icecream_counter = (By.CSS_SELECTOR, ".r:nth-child(1) .counter-plus")
     get_taxi_button = (By.CSS_SELECTOR, ".smart-button-main")
-    # Para verificar que este en busquedo en el pop up
+    # Para verificar que este en busqueda de taxi en el pop up
     order_header_title = (By.CSS_SELECTOR, ".order-header-title")
     driver_img = (By.CSS_SELECTOR, ".order-button > img:nth-child(2)")
 
@@ -60,20 +60,17 @@ class UrbanRoutesPage:
         self.set_to(address_to)
 
     def click_order_taxi_button(self):
-        #WebDriverWait(self.driver, 6).until(expected_conditions.presence_of_element_located(self.order_taxi_button))
         helpers.wait_elements(self.driver, self.order_taxi_button)
         self.driver.find_element(*self.order_taxi_button).click()
 
 
     def click_confort_fee_button(self):
         helpers.wait_elements(self.driver, self.confort_fee_button)
-        #WebDriverWait(self.driver, 6).until(expected_conditions.presence_of_element_located(self.confort_fee_button))
         self.driver.find_element(*self.confort_fee_button).click()
 
     def fill_phone_fild(self):
         self.driver.find_element(*self.phone_field).click()
         helpers.wait_elements(self.driver, self.phone_field_popup)
-        #WebDriverWait(self.driver, 3).until(expected_conditions.presence_of_element_located(self.phone_field_popup))
         self.driver.find_element(*self.phone_field_popup).send_keys(data.phone_number)
         self.driver.find_element(*self.phone_button).click()
         validation_code = helpers.retrieve_phone_code(self.driver)
@@ -101,5 +98,3 @@ class UrbanRoutesPage:
 
     def click_taxi_button(self):
         self.driver.find_element(*self.get_taxi_button).click()
-        #helpers.wait_elements(self.driver, self.driver_img, 60)
-        #WebDriverWait(self.driver, 60).until(expected_conditions.presence_of_element_located(self.driver_img))

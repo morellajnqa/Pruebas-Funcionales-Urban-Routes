@@ -27,7 +27,9 @@ Este proyecto se desarrollo para probar la aplicación Urban Routes, de forma au
 ## Archivos
 
 - data.py: aquí se almacenan los datos necesarios para completar las pruebas.
-- main.py: aquí se encuentra el código de automatización
+- main.py: aquí se encuentra el código de automatización junto a los casos de pruebas.
+- UrbanRoutesPage.py: Contiene la pagina para la clase del webdriver para selenium 
+- helpers.py: Tiene unas funciones de espera y de obtención de codigo telefónico.
 
 ## Ejecución del programa
 ```sh
