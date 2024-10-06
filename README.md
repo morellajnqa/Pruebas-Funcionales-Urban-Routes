@@ -1,7 +1,5 @@
 [![Tripleten](https://id.tripleten.com/resources/2jrb4/login/practicum-keycloakify/build/favicon-32x32.png)]()
 # Comprobar la funcionalidad de Urban Routes
-## Sprint 8
-### Grupo 10
 #### Por: Morella Jiménez 
 
 ## Descripción del proyecto
